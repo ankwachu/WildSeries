@@ -1,0 +1,14 @@
+$primary: #e34234;
+$secondary:#cfe1f8;
+$text-light: #fff;
+$text-dark: #353535;
+
+.nav {
+  background-color: $primary;
+}
+
+.nav a {
+  color: $text-light;
+  font-size: 1.5em;
+  letter-spacing: 0.1em;
+}
