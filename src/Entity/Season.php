@@ -29,13 +29,13 @@ class Season
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Episode", mappedBy="seasons")
+     * @ORM\OneToMany(targetEntity="App\Entity\Episode", mappedBy="season")
      */
-    private $episode;
+    private $episodes;
 
     public function __construct()
     {
-        $this->episode = new ArrayCollection();
+        $this->episodes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,15 +70,15 @@ class Season
     /**
      * @return Collection|Episode[]
      */
-    public function getEpisode(): Collection
+    public function getEpisodes(): Collection
     {
-        return $this->episode;
+        return $this->episodes;
     }
 
     public function addEpisode(Episode $episode): self
     {
-        if (!$this->episode->contains($episode)) {
-            $this->episode[] = $episode;
+        if (!$this->episodes->contains($episode)) {
+            $this->episodes[] = $episode;
             $episode->setSeasons($this);
         }
 
@@ -87,8 +87,8 @@ class Season
 
     public function removeEpisode(Episode $episode): self
     {
-        if ($this->episode->contains($episode)) {
-            $this->episode->removeElement($episode);
+        if ($this->episodes->contains($episode)) {
+            $this->episodes->removeElement($episode);
             // set the owning side to null (unless already changed)
             if ($episode->getSeasons() === $this) {
                 $episode->setSeasons(null);
@@ -106,6 +106,11 @@ class Season
 
     private $program;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $Number;
+
     public function getProgram(): ?Program
     {
         return $this->program;
@@ -114,6 +119,18 @@ class Season
     public function setProgram(?Program $program): self
     {
         $this->program = $program;
+
+        return $this;
+    }
+
+    public function getNumber(): ?int
+    {
+        return $this->Number;
+    }
+
+    public function setNumber(int $Number): self
+    {
+        $this->Number = $Number;
 
         return $this;
     }

@@ -32,10 +32,10 @@ class Episode
     private $synopsis;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Season", inversedBy="episode")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Season", inversedBy="episodes")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $seasons;
+    private $season;
 
     public function getId(): ?int
     {
@@ -80,12 +80,12 @@ class Episode
 
     public function getSeasons(): ?Season
     {
-        return $this->seasons;
+        return $this->season;
     }
 
-    public function setSeasons(?Season $seasons): self
+    public function setSeasons(?Season $season): self
     {
-        $this->seasons = $seasons;
+        $this->season = $season;
 
         return $this;
     }
