@@ -29,7 +29,7 @@ class Season
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Episode", mappedBy="season")
+     * @ORM\OneToMany(targetEntity="App\Entity\Episode", mappedBy="season", orphanRemoval=true)
      */
     private $episodes;
 
@@ -79,7 +79,7 @@ class Season
     {
         if (!$this->episodes->contains($episode)) {
             $this->episodes[] = $episode;
-            $episode->setSeasons($this);
+            $episode->setSeason($this);
         }
 
         return $this;
@@ -90,8 +90,8 @@ class Season
         if ($this->episodes->contains($episode)) {
             $this->episodes->removeElement($episode);
             // set the owning side to null (unless already changed)
-            if ($episode->getSeasons() === $this) {
-                $episode->setSeasons(null);
+            if ($episode->getSeason() === $this) {
+                $episode->setSeason(null);
             }
         }
 

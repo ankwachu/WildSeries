@@ -93,7 +93,7 @@ class Program
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Season", mappedBy="program")
+     * @ORM\OneToMany(targetEntity="App\Entity\Season", mappedBy="program", orphanRemoval=true)
      */
     private $seasons;
 
