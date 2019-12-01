@@ -87,4 +87,8 @@ class Category
     {
         return $this->programs;
     }
+
+    public function setCategory(string $string)
+    {
+    }
 }
