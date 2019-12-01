@@ -30,8 +30,14 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('app_index');
         }
 
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
+
+
         return $this->render('category/index.html.twig', [
             'form' => $form->createView(),
+            'categories' => $categories,
         ]);
     }
 }
