@@ -27,11 +27,17 @@ class CategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_index');
+            return $this->redirectToRoute('category');
         }
+
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
+
 
         return $this->render('category/index.html.twig', [
             'form' => $form->createView(),
+            'categories' => $categories,
         ]);
     }
 }
