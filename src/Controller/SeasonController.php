@@ -52,8 +52,9 @@ class SeasonController extends AbstractController
     /**
      * @Route("/{id}", name="season_show", methods={"GET"})
      */
-    public function show(Season $season, Program $program): Response
+    public function show(Season $season): Response
     {
+        $program = $season->getProgram();
         return $this->render('season/show.html.twig', [
             'season' => $season,
             'program' => $program,
