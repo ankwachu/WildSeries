@@ -4,21 +4,21 @@
 
 {% block body %}
     <div class="container">
-    <h1>Ajouter une catégorie</h1>
+        <h1>Ajouter une catégorie</h1>
 
-    {{ form_start(form) }}
+        {{ form_start(form) }}
 
-    {{ form_row(form.name) }}
+        {{ form_row(form.name) }}
 
-    <button class="btn">{{ button_label|default('Save') }}</button>
+        <button class="btn">{{ button_label|default('Save') }}</button>
 
-    {{ form_end(form) }}
+        {{ form_end(form) }}
 
-    <h2>Les catégories: </h2>
-    {% for category in categories %}
-            <p> {{ category.name }} </p>
-    {% else %}
-        Aucune catégorie trouvée.
-    {% endfor %}
-</div>
+        <h2>Les catégories: </h2>
+        {% for category in categories %}
+                <p> {{ category.name }} </p>
+        {% else %}
+            Aucune catégorie trouvée.
+        {% endfor %}
+    </div>
 {% endblock %}
