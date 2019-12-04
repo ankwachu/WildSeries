@@ -14,7 +14,7 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker  =  Faker\Factory::create('fr_FR');
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $season = new Season();
             $season->setYear($faker->year($max = 'now'));
             $season->setDescription($faker->text);
