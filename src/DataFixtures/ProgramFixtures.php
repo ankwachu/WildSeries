@@ -8,6 +8,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use phpDocumentor\Reflection\Types\Self_;
 use Faker;
+use App\Service\Slugify;
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -70,6 +71,8 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program = new Program();
             $program->setTitle($title);
             $program->setSummary($data['summary']);
+            $slugify = new Slugify();
+            $program->setSlug($slugify->generate($program->getTitle()));
             $manager->persist($program);
             $this->addReference('program_'. $i, $program);
             $program->setCategory($this->getReference('categorie_4'));
