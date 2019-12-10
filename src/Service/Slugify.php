@@ -7,9 +7,11 @@ class Slugify
 {
     public function generate(string $input) : string
     {
-        $input = str_replace('-', ' ', $input);
-        $input = strtolower($input);
-        $input = preg_replace('/--+/', '-', $input);
-        return preg_replace('/[^A-Za-z0-9\-]/', '', $input);
+        setlocale(LC_CTYPE, 'fr_FR');
+        $input = iconv('UTF-8', 'ASCII//TRANSLIT', $input);
+        $input = preg_replace('/\W/', ' ', $input);
+        $input = preg_replace('(\s+)', '-', strtolower(trim($input)));
+
+        return $input;
     }
 }
