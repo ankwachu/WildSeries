@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Episode;
+use App\Entity\Season;
 use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\Slugify;
 
 /**
  * @Route("/episode")
@@ -36,6 +38,8 @@ class EpisodeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $slugify = new Slugify();
+            $episode->setSlug($slugify->generate($episode->getTitle()));
             $entityManager->persist($episode);
             $entityManager->flush();
 
@@ -49,7 +53,7 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="episode_show", methods={"GET"})
+     * @Route("/{slug}", name="episode_show", methods={"GET"})
      */
     public function show(Episode $episode): Response
     {
@@ -59,7 +63,7 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="episode_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="episode_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Episode $episode): Response
     {
@@ -67,6 +71,8 @@ class EpisodeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slugify = new Slugify();
+            $episode->setSlug($slugify->generate($episode->getTitle()));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('episode_index');
@@ -79,7 +85,7 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="episode_delete", methods={"DELETE"})
+     * @Route("/{slug}", name="episode_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Episode $episode): Response
     {
