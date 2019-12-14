@@ -1,20 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Program{% endblock %}
+{% block title %}{{ program.title }}{% endblock %}
 
 {% block body %}
-    <h1>Program</h1>
+    <div class="container-fluid p-3">
+        <h1>{{ program.title }}</h1>
+        <a class="btn btn-outline-success mb-3" href="{{ path('program_index') }}">Retour à l'index séries</a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ program.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ program.title }}</td>
-            </tr>
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Summary</th>
                 <td>{{ program.summary }}</td>
@@ -23,12 +17,16 @@
                 <th>Poster</th>
                 <td>{{ program.poster }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('program_index') }}">back to list</a>
-
-    <a href="{{ path('program_edit', {'slug': program.slug}) }}">edit</a>
-
-    {{ include('program/_delete_form.html.twig') }}
+        <div class="d-flex">
+            <div>
+                <a class="btn btn-success mr-5" href="{{ path('program_edit', {'id': program.id}) }}">Modifier</a>
+            </div>
+            <div>
+                {{ include('program/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

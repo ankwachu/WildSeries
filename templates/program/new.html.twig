@@ -3,9 +3,17 @@
 {% block title %}New Program{% endblock %}
 
 {% block body %}
-    <h1>Create new Program</h1>
-
-    {{ include('program/_form.html.twig') }}
-
-    <a href="{{ path('program_index') }}">back to list</a>
+<div class="container-fluid p-5">
+<h1>Ajouter une nouvelle série</h1>
+    <div class="col-lg-8 m-0 jumbotron">
+        {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.summary) }}
+        {{ form_row(form.poster) }}
+        {{ form_row(form.category) }}
+        <button class="btn btn-primary mt-2">Ajouter</button>
+        {{ form_end(form) }}
+    </div>
+    <a class="btn btn-outline-secondary" href="{{ path('program_index') }}">Retour à l'index des séries</a>
+</div>
 {% endblock %}
