@@ -46,10 +46,11 @@ class ProgramController extends AbstractController
             $program->setSlug($slugify->generate($program->getTitle()));
 
             $email = (new Email())
-                ->from('phptestwild@gmail.com')
-                ->to('phptestwild@gmail.com')
+                ->from($this->getParameter('mailer_from'))
+                ->to($this->getParameter('mailer_from'))
                 ->subject('Une nouvelle série vient d\'être publiée !')
-                ->html('<p>Une nouvelle série vient d\'être publiée sur Wild Séries !</p>');
+                ->html($this->renderView('program/email/email.html.twig',
+                    ['program' => $program]));
 
             $mailer->send($email);
 
