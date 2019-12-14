@@ -8,6 +8,7 @@ use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
 use App\Form\ProgramSearchType;
+use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -93,7 +94,7 @@ class WildController extends AbstractController
      * Getting a program with a formatted slug for title
      *
      * @param string $slug The slugger
-     * @Route("/show/{slug<^[a-z0-9-]+$>}", defaults={"slug" = null}, name="wild_show")
+     * @Route("/show/{slug}", defaults={"slug" = null}, name="wild_show")
      * @return Response
      */
     public function showByProgram(?string $slug): Response
@@ -102,13 +103,10 @@ class WildController extends AbstractController
             throw $this
                 ->createNotFoundException('No slug has been sent to find a program in program\'s table.');
         }
-        $slug = preg_replace(
-            '/-/',
-            ' ', ucwords(trim(strip_tags($slug)), "-")
-        );
+
         $program = $this->getDoctrine()
             ->getRepository(Program::class)
-            ->findOneBy(['title' => mb_strtolower($slug)]);
+            ->findOneBy(['slug' => $slug]);
         if (!$program) {
             throw $this->createNotFoundException(
                 'No program with '.$slug.' title, found in program\'s table.'
@@ -157,7 +155,7 @@ class WildController extends AbstractController
     }
 
     /**
-     * @Route("/show/episode/{id}",
+     * @Route("/show/episode/{slug}",
      *     name="wild_episode")
      */
     public function showEpisode(Episode $episode): Response
@@ -173,9 +171,8 @@ class WildController extends AbstractController
     }
 
     /**
-     * @param string $actorName
-     * @return Response
-     * @Route("/show/actor/{id}", name="show_actor")
+     *
+     * @Route("/show/actor/{slug}", name="show_actor")
      */
     public function showByActor(Actor $actor): Response
     {

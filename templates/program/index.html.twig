@@ -35,16 +35,16 @@
                                 <a class="btn btn-success"
                                    href="{{ path('program_edit', {'id': program.id}) }}">Éditer</a>
 
-                            </div>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="5">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+                   </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('program_new') }}">Create new</a>
 {% endblock %}

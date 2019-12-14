@@ -144,7 +144,6 @@ class Program
         return $this;
     }
 
-
     /**
      * @return Collection|Season[]
      */
@@ -156,6 +155,7 @@ class Program
     /**
      * @return Collection|Actor[]
      */
+
     public function getActors(): Collection
     {
         return $this->actors;
