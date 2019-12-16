@@ -3,11 +3,11 @@
 {% block title %}Edit Program{% endblock %}
 
 {% block body %}
-    <h1>Edit Program</h1>
+    <h1>Modifier la série: {{ program.title }}</h1>
 
-    {{ include('program/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('program/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('program_index') }}">Retour à l'index séries</a>
+    <a class="btn btn-outline-success" href="{{ path('program_index') }}">Retour à l'index séries</a>
 
     {{ include('program/_delete_form.html.twig') }}
 {% endblock %}
