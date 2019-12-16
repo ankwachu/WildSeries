@@ -7,6 +7,7 @@ use App\Entity\Category;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
+use App\Entity\Comment;
 use App\Form\ProgramSearchType;
 use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -162,11 +163,15 @@ class WildController extends AbstractController
     {
         $season = $episode->getSeason();
         $program = $season->getProgram();
+        $comment = $episode->getComments();
+
+
 
         return $this->render('wild/episode.html.twig', [
             'episode' => $episode,
             'season'   => $season,
             'program'  => $program,
+            'comment' => $comment,
         ]);
     }
 
