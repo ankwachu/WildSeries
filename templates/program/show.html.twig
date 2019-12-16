@@ -22,7 +22,7 @@
 
         <div class="d-flex">
             <div>
-                <a class="btn btn-success mr-5" href="{{ path('program_edit', {'id': program.id}) }}">Modifier</a>
+                <a class="btn btn-success mr-5" href="{{ path('program_edit', {'slug': program.slug}) }}">Modifier</a>
             </div>
             <div>
                 {{ include('program/_delete_form.html.twig') }}
