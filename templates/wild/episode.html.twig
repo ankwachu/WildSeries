@@ -3,19 +3,38 @@
 {% block title %}{{ episode.title }}{% endblock %}
 
 {% block body %}
-
     <div class="media">
-        <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+        <img class="align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
         <div class="media-body">
             <a href="{{ path('wild_show', {'slug': program.slug }) }}"><h1 class="mt-0">{{ program.title }}</h1></a>
             <p>Categorie : {{ program.category.name }}</p>
             <a href="{{ path('show_season', {'id': season.id}) }}">
                 <h2>Saison {{ season.number }}</h2>
             </a>
-                <h3>Episode {{ episode.number }} : {{ episode.title }}</h3>
-                <p>{{ episode.synopsis }}</p>
-                <br/>
+            <h3>Episode {{ episode.number }} : {{ episode.title }}</h3>
+            <p>{{ episode.synopsis }}</p>
+            <br/>
+            <div>
+                {% if app.user %}
+                    <h2>Laissez un commentaire</h2>
+                    {{ include ('comment/_form.html.twig') }}
+                    {% for comment in comments %}
+                        <h2 class="mt-5">Commentaires</h2>
+                        <div class="card" style="width: 28rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Commentaire de {{ comment.author.email }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">publié
+                                    le {{ comment.date ? comment.date|date('d/m/Y') : '' }}</h6>
+                                <p class="card-text">{{ comment.comment }}</p>
+                                <a href="#" class="card-link">note : {{ comment.rate }}/5</a>
 
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Pour voir les commentaires, connectez-vous</p>
+                {% endif %}
+            </div>
             <a href="{{ path('wild_index') }}">
                 Retour à l'accueil
             </a>
