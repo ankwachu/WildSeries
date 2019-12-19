@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/program")
@@ -21,6 +21,7 @@ class ProgramController extends AbstractController
 {
     /**
      * @Route("/", name="program_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(ProgramRepository $programRepository): Response
     {
@@ -67,6 +68,7 @@ class ProgramController extends AbstractController
 
     /**
      * @Route("/{slug}", name="program_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Program $program): Response
     {
