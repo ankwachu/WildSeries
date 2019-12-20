@@ -27,10 +27,13 @@
                                     le {{ comment.date ? comment.date|date('d/m/Y') : '' }}</h6>
                                 <p class="card-text">{{ comment.comment }}</p>
                                 <a href="#" class="card-link">note : {{ comment.rate }}/5</a>
-
+                                {% if is_granted('ROLE_SUBSCRIBER') and app.user.id == comment.author.id or (is_granted('ROLE_ADMIN'))%}
+                                    {{ include('comment/_delete_form.html.twig') }}
+                                {%endif%}
                             </div>
                         </div>
                     {% endfor %}
+
                 {% else %}
                     <p>Pour voir les commentaires, connectez-vous</p>
                 {% endif %}
