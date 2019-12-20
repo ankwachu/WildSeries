@@ -29,16 +29,23 @@
                 </div>
             </li>
             <li class="nav-item">
-                <div class="m-2">
-                    {% if app.user %}
-                        {{ app.user.email }}
-                        <a href="{{ path('app_logout') }}">Se déconnecter <i class="fas fa-user"></i></a>
-                    {% else %}
-                        <a href="{{ path('app_login') }}">Se connecter <i class="fas fa-user"></i></a>
-                    {% endif %}
-                </div>
-
+                {% if app.user %}
+                <div class="nav-link">Hello {{ app.user.username }}</div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_profile') }}"> Mon compte</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
             </li>
         </ul>
+        {% endif %}
     </div>
 </nav>
