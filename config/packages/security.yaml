@@ -39,6 +39,7 @@ security:
         - { path: ^/episode, roles: ROLE_ADMIN }
         - { path: ^/actor, roles: ROLE_ADMIN }
         - { path: ^/comment, roles: ROLE_SUBSCRIBER }
+        - { path: ^/my-profile, roles: ROLE_SUBSCRIBER }
 
     role_hierarchy:
         ROLE_SUBSCRIBER: ROLE_USER
