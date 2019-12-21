@@ -10,6 +10,14 @@
                 <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
             </a>
             <p>{{ program.summary }}</p>
+            <h5>Liste des Acteurs : </h5>
+            {% if program.actors|length > 0 %}
+                <p>{% for actor in program.actors %}
+                        <a href="{{ path('show_actor', { 'slug': actor.slug }) }}">{{ actor.name }},</a>
+                    {% endfor %}</p>
+            {% else %}
+                <p>Pas d'acteur dans cette série</p>
+            {% endif %}
         </div>
     {% else %}
         Aucune série trouvée.
