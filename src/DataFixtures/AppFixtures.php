@@ -21,6 +21,7 @@ class AppFixtures extends Fixture
             $category->setName($faker->word);
             $manager->persist($category);
             $this->addReference("category_".$i, $category);
+
             $program = new Program();
             $program->setTitle($faker->sentence(4, true));
             $program->setSummary($faker->text(100));
@@ -30,6 +31,7 @@ class AppFixtures extends Fixture
             $program->setSlug($slug);
             $this->addReference("program_".$i, $program);
             $manager->persist($program);
+
             for($j = 1; $j <= 5; $j ++) {
                 $actor = new Actor();
                 $actor->setname($faker->name);
