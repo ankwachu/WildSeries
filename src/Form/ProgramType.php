@@ -23,16 +23,16 @@ class ProgramType extends AbstractType
                 'label' => 'Résumé',
             ])
             ->add('poster')
-            ->add('category', null, ['choice_label' => 'name'])
-        ;
-        $builder->add('actors', EntityType::class, [
-            'class' => Actor::class,
-            'choice_label' => 'name',
-            'multiple' => true,
-            'expanded' => true,
-            'by_reference' => false,
-        ]);
+            ->add('category', null, ['choice_label' => 'name']);
 
+            $builder->add('actors', EntityType::class, [
+                'class' => Actor::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'by_reference' => false,
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
