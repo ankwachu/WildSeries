@@ -42,9 +42,12 @@ class ProgramController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($program);
+
             $slugify = new Slugify();
             $program->setSlug($slugify->generate($program->getTitle()));
+
+            $entityManager->persist($program);
+            $entityManager->flush();
 
             $email = (new Email())
                 ->from($this->getParameter('mailer_from'))
@@ -55,7 +58,6 @@ class ProgramController extends AbstractController
 
             $mailer->send($email);
 
-            $entityManager->flush();
 
             return $this->redirectToRoute('program_index');
         }

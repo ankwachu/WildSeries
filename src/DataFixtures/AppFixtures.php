@@ -16,7 +16,7 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
         // $manager->persist($product);
-        for ($i = 1; $i <= 1000; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             $category = new Category();
             $category->setName($faker->word);
             $manager->persist($category);

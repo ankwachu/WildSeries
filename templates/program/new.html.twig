@@ -7,14 +7,9 @@
         <h1>Ajouter une nouvelle série</h1>
         <a class="btn btn-outline-secondary" href="{{ path('program_index') }}">Retour à l'index des séries</a>
         <div class="jumbotron">
-            {{ form_start(form) }}
-            {{ form_row(form.title) }}
-            {{ form_row(form.summary) }}
-            {{ form_row(form.poster) }}
-            {{ form_row(form.category) }}
-            {{ form_row(form.actors) }}
+            {{ include('program/_form.html.twig') }}
             <button class="btn btn-primary mt-2">Ajouter</button>
-            {{ form_end(form) }}
+
         </div>
     </div>
 {% endblock %}
