@@ -16,7 +16,9 @@
 
         <h2>Les catégories: </h2>
         {% for category in categories %}
-                <p> {{ category.name }} </p>
+            <div>
+                <a href="">{{ category.name }}</a>
+            </div>
         {% else %}
             Aucune catégorie trouvée.
         {% endfor %}
