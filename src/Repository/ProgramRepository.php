@@ -22,7 +22,7 @@ class ProgramRepository extends ServiceEntityRepository
     public function findAllWithCategories()
     {
         $qb = $this->createQueryBuilder('p')
-            ->innerJoin('p.category', 'c' )
+            ->innerJoin('p.category', 'c')
             ->addSelect('c')
             ->getQuery();
 
@@ -35,5 +35,15 @@ class ProgramRepository extends ServiceEntityRepository
         $query = $em->createQuery('SELECT a, c, p FROM App\Entity\Program p INNER JOIN p.category c LEFT JOIN p.actors a');
 
         return $query->execute();
+    }
+
+    public function searchByName(string $search)
+    {
+        return $this->createQueryBuilder('p')
+            ->andwhere('p.title LIKE :title')
+            ->setParameter('title', '%'.$search.'%')
+            ->getQuery()
+            ->getResult();
+
     }
 }

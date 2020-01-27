@@ -12,4 +12,13 @@
             {% endfor %}
             <a href="{{ path('wild_index') }}" class="btn btn-outline-success">Voir toutes les séries</a>
     </div>
+    <div class="row">
+        <div class="col-12">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button>search</button>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
 {% endblock %}

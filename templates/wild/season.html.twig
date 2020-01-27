@@ -14,7 +14,7 @@
                 <a href="{{ path('wild_episode', {'slug': episode.slug}) }}"><h3>Episode {{ episode.number }} : {{ episode.title }}</h3></a>
                 <br/>
             {% endfor %}
-            <a href="{{ path('wild_index') }}">
+            <a class="btn btn-outline-success" href="{{ path('wild_index') }}">
                 Retour à l'accueil
             </a>
         </div>
