@@ -27,3 +27,5 @@ Quête 20 [lien vidéo](https://www.loom.com/share/dd5ed63e797147bca75e5ba40fbf9
 Quête 21 [lien vidéo](https://www.loom.com/share/01cfadba554d4eec873f0492e05ded7e)
 
 Quête 26 [lien vidéo](https://www.loom.com/share/20a0866784ac4eacaec8e6562695501f)
+
+Quête 23 [lien vidéo](https://www.loom.com/share/d486b6358e8e4148bd6c8c246d43ed26)
