@@ -3,14 +3,12 @@
 {% block title %}Actor{% endblock %}
 
 {% block body %}
-    <h1>Actor</h1>
+    <div class="container-fluid p-3">
+        <h1>Actor</h1>
+        <a class="btn btn-outline-success mb-3" href="{{ path('actor_index') }}">Retour à l'index des acteurs</a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ actor.id }}</td>
-            </tr>
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Name</th>
                 <td>{{ actor.name }}</td>
@@ -19,12 +17,15 @@
                 <th>Slug</th>
                 <td>{{ actor.slug }}</td>
             </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('actor_index') }}">back to list</a>
-
-    <a href="{{ path('actor_edit', {'slug': actor.slug}) }}">edit</a>
-
-    {{ include('actor/_delete_form.html.twig') }}
+            </tbody>
+        </table>
+        <div class="d-flex">
+            <div>
+                <a class="btn btn-success mr-5" href="{{ path('actor_edit', {'slug': actor.slug}) }}">Modifier</a>
+            </div>
+            <div>
+                {{ include('actor/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 {% endblock %}
