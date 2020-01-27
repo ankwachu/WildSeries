@@ -29,7 +29,6 @@ class DefaultController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $search = $data['search'];
-
             $programs = $programRepository->searchByName($search);
         }
         return $this->render('home.html.twig', [

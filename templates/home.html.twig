@@ -2,6 +2,14 @@
 
 {% block body %}
     <h1>Bienvenue sur Wild Series</h1>
+    <div class="row">
+        <div class="col-12">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button>Rechercher</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
     <h3>Les nouvelles séries ajoutées</h3>
     <div class="container-fluid">
             {% for program in programs %}
@@ -12,13 +20,5 @@
             {% endfor %}
             <a href="{{ path('wild_index') }}" class="btn btn-outline-success">Voir toutes les séries</a>
     </div>
-    <div class="row">
-        <div class="col-12">
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <button>search</button>
-            {{ form_end(form) }}
-        </div>
 
-    </div>
 {% endblock %}

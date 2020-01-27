@@ -14,7 +14,10 @@ class SearchProgramType extends AbstractType
         $builder
             ->setMethod('GET')
             ->add('search', SearchType::class,[
-                'label' => 'Rechercher',
+                'label' => ' ',
+                'attr' => [
+                    'placeholder' => 'Rechercher une série...',
+                    ]
     ])
         ;
     }
